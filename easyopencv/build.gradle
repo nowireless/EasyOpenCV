@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 
 ext {
-    PUBLISH_GROUP_ID = 'org.openftc'
+    PUBLISH_GROUP_ID = 'org.nowireless'
     PUBLISH_ARTIFACT_ID = 'easyopencv'
-    PUBLISH_VERSION = '1.5.1'
+    PUBLISH_VERSION = '1.6.0-contrib'
 }
 
 android {
@@ -17,8 +17,8 @@ android {
     }
 
     packagingOptions {
-        exclude '/lib/armeabi-v7a/libOpenCvAndroid453.so'
-        exclude '/lib/arm64-v8a/libOpenCvAndroid453.so'
+        exclude '/lib/armeabi-v7a/libopencv_java455_contrib.so'
+        exclude '/lib/arm64-v8a/libopencv_java455_contrib.so'
     }
 
     buildTypes {

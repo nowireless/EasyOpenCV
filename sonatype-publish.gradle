@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-apply plugin: 'signing'
+//apply plugin: 'signing'
 
 task eocvDocs(type: Javadoc) {
     group = "Documentation"
@@ -43,9 +43,9 @@ ext["ossrhPassword"] = System.getenv('OPENFTC_SONATYPE_PASSWORD')
     ossrhPassword = System.getenv('OPENFTC_SONATYPE_PASSWORD')
 }*/
 
-signing {
-    sign publishing.publications
-}
+//signing {
+//    sign publishing.publications
+//}
 
 /*
  * https://developer.android.com/studio/build/maven-publish-plugin
