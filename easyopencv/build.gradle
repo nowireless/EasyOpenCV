@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
     PUBLISH_GROUP_ID = 'org.nowireless'
     PUBLISH_ARTIFACT_ID = 'easyopencv'
-    PUBLISH_VERSION = '1.6.0-contrib'
+    PUBLISH_VERSION = '1.5.2-contrib'
 }
 
 android {
@@ -63,7 +63,7 @@ android {
 dependencies {
     //compileOnly fileTree(include: ['*.aar'], dir: '../libs')
     api 'org.nowireless:opencv-repackaged:4.5.5-contrib'
-    compileOnly 'org.firstinspires.ftc:RobotCore:7.0.0'
+    compileOnly 'org.firstinspires.ftc:RobotCore:8.0.0'
 }
 
 apply from: '../sonatype-publish.gradle'

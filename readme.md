@@ -1,6 +1,6 @@
 # EasyOpenCV
 
-NOTE: SDK v6.1+ is required to use this
+NOTE: SDK v8.0+ is required to use this
 
 NOTE: an OpenRC-based SDK is NOT required to use this
 
@@ -13,7 +13,7 @@ Features at a glance:
      - Two webcams
      - Two internal cameras *(select devices; internal cameras must not share the same bus)*
  - Supports Driver Station camera preview feature introduced in SDK v5.1
- - Supports tapping on the viewport to cycle through the various stages of a pipeline (see [PipelineStageSwitchingExample](https://github.com/OpenFTC/EasyOpenCV/blob/master/examples/src/main/java/org/openftc/easyopencv/examples/PipelineStageSwitchingExample.java))
+ - Supports tapping on the viewport to cycle through the various stages of a pipeline (see [PipelineStageSwitchingExample](https://github.com/OpenFTC/EasyOpenCV/blob/master/examples/src/main/java/org/firstinspires/ftc/teamcode/PipelineStageSwitchingExample.java))
  - Supports using webcams directly with OpenCV instead of going through a Vuforia instance
  - Supports changing pipelines on-the-fly (while a streaming session is in flight)
  - Supports dynamically pausing/resuming live viewport to save battery and CPU time
@@ -54,7 +54,7 @@ Unfortunately, due to a [known bug with OpenCV 4.x](https://github.com/opencv/op
 3. At the bottom, add this:
 
         dependencies {
-            implementation 'org.openftc:easyopencv:1.5.1'
+            implementation 'org.openftc:easyopencv:1.5.2'
          }
 
 4. Open the `build.common.gradle` file, scroll down until you find this part:
@@ -79,6 +79,11 @@ Unfortunately, due to a [known bug with OpenCV 4.x](https://github.com/opencv/op
 
 
 ## Changelog:
+
+### v1.5.2
+
+ - Fixes compatibility with SDK v8.0. You MUST use v1.5.2 (or later) for SDK 8.0. Previous versions Will **not** work!! Backwards compatibility is NOT maintained for this release unfortunately!
+ - Fixes possible leak of framebuffer when viewport render thread was restarted
 
 ### v1.5.1
 
