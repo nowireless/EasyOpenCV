@@ -47,21 +47,59 @@ Unfortunately, due to a [known bug with OpenCV 4.x](https://github.com/opencv/op
 
 1. Open your FTC SDK Android Studio project
 
-2. Open the `build.gradle` file for the TeamCode module:
+2. Add maven repository containing required libraries. 
+    1. Open the `build.dependencies.gradle` in the root of the project:
+
+       ![img-here](doc/images/build-dependencies-gradle.png)
+
+    2. Add a local maven repository at the end of the repositories block.
+
+       ```
+          maven { url = 'https://nowireless.github.io/maven/' }
+       ```
+
+       > **Before:**
+       > ```
+       > repositories {
+       >     mavenCentral()
+       >     google() // Needed for androidx
+       >     maven { url = 'https://maven.brott.dev/' }
+       >     flatDir {
+       >         dirs rootProject.file('libs')
+       >     }
+       > }
+       > ```
+       > **After:**
+       > ```
+       > repositories {
+       >     mavenCentral()
+       >     google() // Needed for androidx
+       >     maven { url = 'https://maven.brott.dev/' }
+       >     maven { url = 'https://nowireless.github.io/maven/' }
+       >     flatDir {
+       >         dirs rootProject.file('libs')
+       >     }
+       > }
+       > ```
+
+3. Open the `build.gradle` file for the TeamCode module:
 
     ![img-here](doc/images/teamcode-gradle.png)
 
-3. At the bottom, add this:
+4. At the bottom, add this:
+    ```
+           dependencies {
+               implementation 'org.nowireless:easyopencv:1.5.2-contrib'
+            }
+    ```
 
-        dependencies {
-            implementation 'org.openftc:easyopencv:1.5.2'
-         }
+    ![img-here](doc/images/build-gradle-teamcode-deps.png)
 
-4. Open the `build.common.gradle` file, scroll down until you find this part:
+5. Open the `build.common.gradle` file, scroll down until you find this part:
 
     <img src="doc/images/build-common-gradle-buildscript.png" width="50%" height="50%">
 
-5. Remove both references to `"arm64-v8a"` described in debug and release blocks, leaving `"armeabi-v7a"` untouched:
+6. Remove both references to `"arm64-v8a"` described in debug and release blocks, leaving `"armeabi-v7a"` untouched:
 
     ![img-here](doc/images/build-common-gradle-buildscript-remove-arm64.png)
 
@@ -73,12 +111,16 @@ Unfortunately, due to a [known bug with OpenCV 4.x](https://github.com/opencv/op
 
     ![img-here](doc/images/gradle-sync.png)
 
-7. Because EasyOpenCv depends on [OpenCV-Repackaged](https://github.com/OpenFTC/OpenCV-Repackaged), you will also need to copy [`libOpenCvAndroid453.so`](https://github.com/OpenFTC/OpenCV-Repackaged/raw/9a4d3d4bc001feffb3767842fa2de0c38a98883a/doc/native_libs/armeabi-v7a/libOpenCvAndroid453.so) from the `/doc/native_libs` folder of that repo into the `FIRST` folder on the USB storage of the Robot Controller (i.e. connect the Robot Controller to your computer with a USB cable, put it into MTP mode, browse the contents of the file system, and drag 'n drop the file into the "FIRST" folder at the top level of the filesystem). Note that Control Hubs default to MTP mode and thus should be recognized immediately upon plugging it in. For Mac, you will either need to use the Android File Transfer program, or you can use the built-in file explorer side pane in Android Studio.
+7. Because EasyOpenCv depends on [OpenCV-Repackaged](https://github.com/nowireless/OpenCV-Repackaged), you will also need to copy [`libopencv_java455_contrib.so`](https://github.com/nowireless/OpenCV-Repackaged/blob/android-contrib/doc/native_libs/armeabi-v7a/libopencv_java455_contrib.so) from the `/doc/native_libs` folder of that repo into the `FIRST` folder on the USB storage of the Robot Controller (i.e. connect the Robot Controller to your computer with a USB cable, put it into MTP mode, browse the contents of the file system, and drag 'n drop the file into the "FIRST" folder at the top level of the filesystem). Note that Control Hubs default to MTP mode and thus should be recognized immediately upon plugging it in. For Mac, you will either need to use the Android File Transfer program, or you can use the built-in file explorer side pane in Android Studio.
 
 8. Congrats, you're ready to go! Now check out the example OpModes and other documentation in the [Documentation Section](https://github.com/OpenFTC/EasyOpenCV/tree/master#documentation).
 
 
 ## Changelog:
+
+### v1.5.2-contrib
+
+- Switch to use forked version of [OpenCV-Repackaged by @nowireless](https://github.com/nowireless/OpenCV-Repackaged) that includes the OpenCV contrib modules. 
 
 ### v1.5.2
 
